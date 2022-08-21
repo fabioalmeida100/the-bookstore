@@ -2,15 +2,14 @@ package com.mercadolivro.service
 
 import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
 import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
-import com.mercadolivro.extension.ToCustomerModel
+import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.repository.ICustomerRepository
+import com.mercadolivro.repository.CustomerRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class CustomerService(val customerRepository: ICustomerRepository) {
+class CustomerService(val customerRepository: CustomerRepository) {
 
     fun getAll(name: String?): List<CustomerModel> {
         /*var customers = customerRepository.findAll()
@@ -30,13 +29,13 @@ class CustomerService(val customerRepository: ICustomerRepository) {
         customerRepository.save(CustomerModel(name = customerModelRequestDto.name, email = customerModelRequestDto.email))
     }
 
-    fun getCustomer(id: Int): CustomerModel? {
+    fun getById(id: Int): CustomerModel? {
         return customerRepository.findByIdOrNull(id);
     }
 
     fun update(id: Int, putCustomerModelRequestDto: PutCustomerModelRequestDto) {
         if (customerRepository.existsById(id)) {
-            var customer = putCustomerModelRequestDto.ToCustomerModel()
+            var customer = putCustomerModelRequestDto.toCustomerModel()
             customer.id = id
             customerRepository.save(customer)
         }

@@ -6,7 +6,6 @@ import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("customers")
@@ -25,7 +24,7 @@ class CustomerController(val customerService: CustomerService) {
 
         @GetMapping("/{id}")
         fun getCustomer(@PathVariable id: Int): CustomerModel? {
-            return customerService.getCustomer(id)
+            return customerService.getById(id)
         }
 
         @PutMapping("/{id}")
