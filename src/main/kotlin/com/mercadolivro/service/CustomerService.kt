@@ -2,14 +2,17 @@ package com.mercadolivro.service
 
 import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
 import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
+import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.repository.BookRepository
 import com.mercadolivro.repository.CustomerRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService(val customerRepository: CustomerRepository) {
+class CustomerService(val customerRepository: CustomerRepository,
+    val bookService: BookService) {
 
     fun getAll(name: String?): List<CustomerModel> {
         /*var customers = customerRepository.findAll()
@@ -25,24 +28,28 @@ class CustomerService(val customerRepository: CustomerRepository) {
         return customerRepository.findAll() .toList()
     }
 
-    fun create(customerModelRequestDto: PostCustomerModelRequestDto) {
-        customerRepository.save(CustomerModel(name = customerModelRequestDto.name, email = customerModelRequestDto.email))
+    fun create(customerModel: CustomerModel) {
+        customerRepository.save(customerModel)
     }
 
     fun getById(id: Int): CustomerModel? {
         return customerRepository.findByIdOrNull(id);
     }
 
-    fun update(id: Int, putCustomerModelRequestDto: PutCustomerModelRequestDto) {
-        if (customerRepository.existsById(id)) {
-            var customer = putCustomerModelRequestDto.toCustomerModel()
-            customer.id = id
+    fun update(customer: CustomerModel) {
+        val customerId = customer.id ?: throw Exception("Customer not found")
+        if (customerRepository.existsById(customerId)){
             customerRepository.save(customer)
         }
     }
 
     fun delete(id: Int) {
-        customerRepository.deleteById(id)
+        val customer = getById(id)
+        if (customer != null) {
+            bookService.deleteByCustomer(customer)
+            customer.status = CustomerStatus.INATIVO
+            customerRepository.save(customer)
+        }
     }
 
 

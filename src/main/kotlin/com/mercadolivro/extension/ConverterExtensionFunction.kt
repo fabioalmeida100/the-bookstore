@@ -1,14 +1,21 @@
 package com.mercadolivro.extension
 
 import com.mercadolivro.controller.dtos.request.PostBookRequestDto
+import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
 import com.mercadolivro.controller.dtos.request.PutBookRequestDto
 import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
 import com.mercadolivro.enums.BookStatus
+import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
 
-fun PutCustomerModelRequestDto.toCustomerModel(): CustomerModel {
-    return CustomerModel(name = this.name, email = this.email)
+fun PostCustomerModelRequestDto.toCustomerModel() = CustomerModel(
+    name = name,
+    email = email,
+    status = CustomerStatus.ATIVO
+)
+fun PutCustomerModelRequestDto.toCustomerModel(previousCustomer: CustomerModel): CustomerModel {
+    return CustomerModel(id = previousCustomer.id,  name = this.name, email = this.email, status = previousCustomer.status)
 }
 
 fun PostBookRequestDto.toBookModel(customer: CustomerModel?): BookModel {
