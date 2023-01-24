@@ -32,7 +32,7 @@ fun PutBookRequestDto.toBookModel(previousValue: BookModel): BookModel {
         id = previousValue.id,
         name = this.name ?: previousValue.name,
         price = this.price ?: previousValue.price,
-        status = previousValue.status,
+        status = previousValue.status!!,
         customer = previousValue.customer
     )
 }
