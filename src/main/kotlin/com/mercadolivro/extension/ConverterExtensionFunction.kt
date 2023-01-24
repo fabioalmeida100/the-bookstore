@@ -4,6 +4,8 @@ import com.mercadolivro.controller.dtos.request.PostBookRequestDto
 import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
 import com.mercadolivro.controller.dtos.request.PutBookRequestDto
 import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
+import com.mercadolivro.controller.dtos.response.BookResponse
+import com.mercadolivro.controller.dtos.response.CustomerResponse
 import com.mercadolivro.enums.BookStatus
 import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.model.BookModel
@@ -34,5 +36,24 @@ fun PutBookRequestDto.toBookModel(previousValue: BookModel): BookModel {
         price = this.price ?: previousValue.price,
         status = previousValue.status!!,
         customer = previousValue.customer
+    )
+}
+
+fun CustomerModel.toResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        status = this.status
+    )
+}
+
+fun BookModel.toResponse(): BookResponse {
+    return BookResponse(
+        id = this.id,
+        name = this.name,
+        price = this.price,
+        customer = this.customer,
+        status = this.status
     )
 }
