@@ -1,13 +1,9 @@
 package com.mercadolivro.service
 
-import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
-import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
 import com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.extension.toCustomerModel
+import com.mercadolivro.exception.NotFoundException
 import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.repository.BookRepository
 import com.mercadolivro.repository.CustomerRepository
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -33,7 +29,9 @@ class CustomerService(val customerRepository: CustomerRepository,
     }
 
     fun getById(id: Int): CustomerModel? {
-        return customerRepository.findByIdOrNull(id);
+        return customerRepository
+            .findById(id)
+            .orElseThrow{ NotFoundException("Customer [${id}] not exists", "ML-0002") }
     }
 
     fun update(customer: CustomerModel) {
