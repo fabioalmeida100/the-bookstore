@@ -51,5 +51,7 @@ class CustomerService(val customerRepository: CustomerRepository,
         }
     }
 
-
+    fun emailAvailable(email: String): Boolean {
+        return !customerRepository.existsByEmail(email)
+    }
 }
