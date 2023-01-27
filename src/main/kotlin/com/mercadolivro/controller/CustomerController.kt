@@ -1,13 +1,14 @@
 package com.mercadolivro.controller
 
-import com.mercadolivro.controller.dtos.request.PostCustomerModelRequestDto
-import com.mercadolivro.controller.dtos.request.PutCustomerModelRequestDto
+import com.mercadolivro.controller.dtos.request.PostCustomerRequestDto
+import com.mercadolivro.controller.dtos.request.PutCustomerRequestDto
 import com.mercadolivro.controller.dtos.response.CustomerResponse
 import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.extension.toResponse
 import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("customers")
@@ -20,7 +21,7 @@ class CustomerController(val customerService: CustomerService) {
 
         @PostMapping
         @ResponseStatus(HttpStatus.CREATED)
-        fun create(@RequestBody customerModelRequestDto: PostCustomerModelRequestDto) {
+        fun create(@RequestBody @Valid customerModelRequestDto: PostCustomerRequestDto) {
             val customerModel = customerModelRequestDto.toCustomerModel();
             customerService.create(customerModel)
         }
@@ -32,7 +33,7 @@ class CustomerController(val customerService: CustomerService) {
 
         @PutMapping("/{id}")
         @ResponseStatus(HttpStatus.NO_CONTENT)
-        fun update(@PathVariable id: Int, @RequestBody putCustomerModelRequestDto: PutCustomerModelRequestDto) {
+        fun update(@PathVariable id: Int, @RequestBody putCustomerModelRequestDto: PutCustomerRequestDto) {
             val customerModelSaved = customerService.getById(id)
             customerService.update(putCustomerModelRequestDto.toCustomerModel(customerModelSaved!!))
         }
