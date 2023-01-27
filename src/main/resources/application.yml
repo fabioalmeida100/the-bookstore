@@ -7,3 +7,5 @@ spring:
     username: admin
     password: root@root
 
+  jackson:
+    default-property-inclusion: non_null
