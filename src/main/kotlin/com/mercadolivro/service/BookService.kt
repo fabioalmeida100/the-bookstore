@@ -49,4 +49,8 @@ class BookService(val bookRepository: BookRepository) {
         bookRepository.saveAll(books)
     }
 
+    fun geAllById(books: Set<Int>): List<BookModel> {
+        return bookRepository.findAllById(books)
+    }
+
 }

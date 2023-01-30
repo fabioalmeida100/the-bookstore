@@ -13,7 +13,6 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("customers")
 class CustomerController(val customerService: CustomerService) {
-
         @GetMapping
         fun getAll(@RequestParam name: String?): List<CustomerResponse> {
             return customerService.getAll(name).map { it.toResponse() }
