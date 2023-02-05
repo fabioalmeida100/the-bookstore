@@ -40,6 +40,23 @@ class CustomerServiceTest {
         verify(exactly = 0) { customerRepository.findByNameContaining(any()) }
     }
 
+    @Test
+    fun `should return specific customer`() {
+        // Arrange
+        val name = "Fabin-${Math.random()}"
+        val customers = listOf(buildCustomer(), buildCustomer())
+
+        every { customerRepository.findByNameContaining(name) } returns customers
+
+        // Act
+        val customer = customerService.getAll(name)
+
+        // Assert
+        assertEquals(customer, customer)
+        verify(exactly = 0) { customerRepository.findAll() }
+        verify(exactly = 1) { customerRepository.findByNameContaining(name) }
+    }
+
     fun buildCustomer(
             id: Int? = null,
             name: String = "John Doe",
