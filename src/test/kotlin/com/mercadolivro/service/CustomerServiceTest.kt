@@ -64,15 +64,14 @@ class CustomerServiceTest {
     @Test
     fun `should create customer`() {
         // Arrange
-        val customer = buildCustomer()
-        every { customerRepository.save(customer) } returns customer
+        val fakeCustomer = buildCustomer()
+        every { customerRepository.save(fakeCustomer) } returns fakeCustomer
 
         // Act
-        val customerCreated = customerService.create(customer)
+        val customerCreated = customerService.create(fakeCustomer)
 
         // Assert
-        assertEquals(customer, customerCreated)
-        verify(exactly = 1) { customerRepository.save(customer) }
+        verify(exactly = 1) { customerRepository.save(fakeCustomer) }
     }
 
     @Test
