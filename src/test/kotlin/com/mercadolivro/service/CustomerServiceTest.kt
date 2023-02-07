@@ -2,6 +2,7 @@ package com.mercadolivro.service
 
 import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.exception.NotFoundException
+import com.mercadolivro.helper.buildCustomer
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
 import io.mockk.every
@@ -105,14 +106,4 @@ class CustomerServiceTest {
         assertEquals("ML-201", error.errorCode)
         verify(exactly = 1) { customerRepository.findById(customerId) }
     }
-
-    fun buildCustomer(
-            id: Int? = null,
-            name: String = "John Doe",
-            email: String = "${UUID.randomUUID()}@gmail.com",
-        ) = CustomerModel(
-            id = id,
-            name = name,
-            email = email,
-            status = CustomerStatus.ATIVO)
 }
