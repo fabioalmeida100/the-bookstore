@@ -16,7 +16,7 @@ class PurchaseMapping(private val customerService: CustomerService,
 
         return PurchaseModel(
             customer = customer!!,
-            books = books!!.toMutableList(),
+            books = books.toMutableList(),
             price = books.sumOf { it.price }
         )
     }
