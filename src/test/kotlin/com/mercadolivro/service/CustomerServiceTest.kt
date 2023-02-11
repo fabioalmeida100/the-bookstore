@@ -1,9 +1,7 @@
 package com.mercadolivro.service
 
-import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.exception.NotFoundException
 import com.mercadolivro.helper.buildCustomer
-import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -15,7 +13,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import java.util.Optional
-import java.util.UUID
 import kotlin.random.Random
 
 @ExtendWith(MockKExtension::class)

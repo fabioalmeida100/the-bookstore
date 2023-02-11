@@ -12,7 +12,7 @@ data class PurchaseModel (
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    var customer: CustomerModel,
+    var customer: Customer,
 
     @ManyToMany
     @JoinTable(
@@ -20,7 +20,7 @@ data class PurchaseModel (
         joinColumns = [JoinColumn(name = "purchase_id")],
         inverseJoinColumns = [JoinColumn(name = "book_id")]
     )
-    var books: MutableList<BookModel>,
+    var books: MutableList<Book>,
 
     @Column
     var nfe: String? = null,

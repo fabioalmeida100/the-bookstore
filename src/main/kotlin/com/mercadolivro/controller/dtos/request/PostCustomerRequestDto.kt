@@ -11,5 +11,8 @@ data class PostCustomerRequestDto(
         @field: Email (message = "Email deve ser válido")
         @EmailAvailable
         val email: String,
+
+        @field: NotEmpty (message = "Password deve ser preenchido")
+        val password: String
 )
 

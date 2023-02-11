@@ -7,7 +7,7 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity(name = "book")
-data class BookModel (
+data class Book (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
@@ -20,9 +20,9 @@ data class BookModel (
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    var customer: CustomerModel? = null
+    var customer: Customer? = null
 ) {
-    constructor(id: Int? = null, name: String, price: BigDecimal, status: BookStatus, customer: CustomerModel? = null) : this(id, name, price, customer) {
+    constructor(id: Int? = null, name: String, price: BigDecimal, status: BookStatus, customer: Customer? = null) : this(id, name, price, customer) {
         this.status = status
     }
 

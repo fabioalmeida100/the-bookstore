@@ -1,14 +1,14 @@
 package com.mercadolivro.helper
 
 import com.mercadolivro.enums.CustomerStatus
-import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.model.Customer
 import java.util.UUID
 
 fun buildCustomer(
     id: Int? = null,
     name: String = "John Doe",
     email: String = "${UUID.randomUUID()}@gmail.com",
-) = CustomerModel(
+) = Customer(
     id = id,
     name = name,
     email = email,
