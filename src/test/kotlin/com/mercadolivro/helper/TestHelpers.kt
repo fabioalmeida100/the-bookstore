@@ -12,4 +12,5 @@ fun buildCustomer(
     id = id,
     name = name,
     email = email,
-    status = CustomerStatus.ATIVO)
+    status = CustomerStatus.ATIVO,
+    password = "123456")
