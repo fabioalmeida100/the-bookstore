@@ -2,6 +2,7 @@ package com.mercadolivro.config
 
 import com.mercadolivro.repository.CustomerRepository
 import com.mercadolivro.security.AuthenticationFilter
+import com.mercadolivro.security.AuthorizationFilter
 import com.mercadolivro.security.JwtUtil
 import com.mercadolivro.service.UserDetailsCustomerService
 import org.springframework.context.annotation.Bean
@@ -32,6 +33,7 @@ class SecurityConfig(
             .anyRequest()
             .authenticated()
         http.addFilter(AuthenticationFilter(authenticationManager(), customerRepository, jwtUtil))
+        http.addFilter(AuthorizationFilter(authenticationManager(), userDetailsCustomerService, jwtUtil))
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
 
