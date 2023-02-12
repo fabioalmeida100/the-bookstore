@@ -38,11 +38,16 @@ class SecurityConfig(
         "/admin/**"
     )
 
+    private val PUBLIC_GET_MATCHERS = arrayOf(
+        "/books"
+    )
+
     override fun configure(http: HttpSecurity) {
         http.cors().and().csrf().disable()
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST, *PUBLIC_POST_MATCHERS).permitAll()
             .antMatchers(*ADMIN_MATCHERS).hasAnyAuthority(Role.ADMIN.description)
+            .antMatchers(HttpMethod.GET, *PUBLIC_GET_MATCHERS).permitAll()
             .anyRequest()
             .authenticated()
         http.addFilter(AuthenticationFilter(authenticationManager(), customerRepository, jwtUtil))
