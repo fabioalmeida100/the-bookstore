@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mercadolivro?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/thebookstore?createDatabaseIfNotExist=true
     username: root
     password: root

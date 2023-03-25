@@ -10,7 +10,7 @@ plugins {
 	jacoco
 }
 
-group = "com.mercadolivro"
+group = "com.thebookstore"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
