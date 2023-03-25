@@ -38,7 +38,7 @@ class JwtUtil {
         return false
     }
 
-    private fun getClaims(token: String): Claims {
+    private fun getClaims(token: String): Claims? {
         try {
             return Jwts.parser().setSigningKey(secret!!.toByteArray()).parseClaimsJws(token).body
         } catch (e: Exception) {
@@ -48,6 +48,6 @@ class JwtUtil {
 
     fun getCustomerId(token: String): String {
         val claims = getClaims(token)
-        return claims.subject
+        return claims!!.subject
     }
 }

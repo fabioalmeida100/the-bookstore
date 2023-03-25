@@ -1,5 +1,7 @@
 # The Bookstore Project - A simple bookstore application
 
+[![Build Status](https://github.com/fabioalmeida100/the-bookstore/actions/workflows/build-check.yml/badge.svg)](https://github.com/fabioalmeida100/the-bookstore/actions/workflows/build-check.yml)
+
 This is a simple bookstore application that allows you to create, read, update and delete books and customers.
 
 It is created using the following technologies:
