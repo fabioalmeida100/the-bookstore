@@ -85,12 +85,12 @@ class CustomerServiceTest {
         every { customerRepository.findById(customerId) } returns Optional.empty()
 
         // Act
-        val error = assertThrows<NotFoundException>{
+        val error = assertThrows<NotFoundException> {
             customerService.getById(customerId)
         }
 
         // Assert
-        assertEquals("Customer [${customerId}] not found", error.message)
+        assertEquals("Customer [$customerId] not found", error.message)
         assertEquals("ML-201", error.errorCode)
         verify(exactly = 1) { customerRepository.findById(customerId) }
     }

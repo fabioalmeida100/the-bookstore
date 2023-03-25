@@ -5,10 +5,9 @@ import com.thebookstore.enums.CustomerStatus
 import com.thebookstore.helper.buildCustomer
 import com.thebookstore.repository.CustomerRepository
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -48,10 +47,10 @@ class CustomerControllerTest {
     @Test
     fun `should return a list of customer`() {
         // Arrange
-        val customer1 = buildCustomer();
+        val customer1 = buildCustomer()
         customerRepository.save(customer1)
 
-        val customer2 = buildCustomer();
+        val customer2 = buildCustomer()
         customerRepository.save(customer2)
 
         // Assert
@@ -75,9 +74,11 @@ class CustomerControllerTest {
         val customer = buildCustomer()
 
         // Act
-        mockMvc.perform(post("/customers")
-            .contentType("application/json")
-            .content(objectMapper.writeValueAsString(customer)))
+        mockMvc.perform(
+            post("/customers")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(customer))
+        )
             .andExpect(status().isCreated)
             .andReturn()
 
@@ -114,9 +115,11 @@ class CustomerControllerTest {
 
         // Act
         customerSaved.name = "Nome alterado"
-        mockMvc.perform(put("/customers/${customerSaved.id}")
-            .contentType("application/json")
-            .content(objectMapper.writeValueAsString(customerSaved)))
+        mockMvc.perform(
+            put("/customers/${customerSaved.id}")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(customerSaved))
+        )
             .andExpect(status().isNoContent)
             .andReturn()
 

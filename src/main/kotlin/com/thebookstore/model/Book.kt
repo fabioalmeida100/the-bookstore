@@ -7,7 +7,7 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity(name = "book")
-data class Book (
+data class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
@@ -29,7 +29,7 @@ data class Book (
     @Column
     @Enumerated(EnumType.STRING)
     var status: BookStatus? = null
-        set (value) {
+        set(value) {
             if (field == BookStatus.CANCELADO || field == BookStatus.DELETADO) {
                 throw BadRequestException(Errors.ML102.message.format(field), Errors.ML102.code)
             }

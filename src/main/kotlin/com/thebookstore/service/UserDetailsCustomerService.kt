@@ -10,12 +10,11 @@ import org.springframework.stereotype.Service
 @Service
 class UserDetailsCustomerService(
     private val customerRepository: CustomerRepository
-): UserDetailsService {
+) : UserDetailsService {
     override fun loadUserByUsername(customerId: String): UserDetails {
         val customer = customerRepository.findById(customerId.toInt())
             .orElseThrow { throw AuthenticationException("Usuário não encontrado", "999") }
 
         return UserCustomDetails(customer)
     }
-
 }

@@ -10,7 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService(private val customerRepository: CustomerRepository,
+class CustomerService(
+    private val customerRepository: CustomerRepository,
     private val bookService: BookService,
     private val bCrytpt: BCryptPasswordEncoder
 ) {
@@ -26,7 +27,7 @@ class CustomerService(private val customerRepository: CustomerRepository,
             return customerRepository.findByNameContaining(it)
         }
 
-        return customerRepository.findAll() .toList()
+        return customerRepository.findAll().toList()
     }
 
     fun create(customer: Customer) {
@@ -40,12 +41,12 @@ class CustomerService(private val customerRepository: CustomerRepository,
     fun getById(id: Int): Customer? {
         return customerRepository
             .findById(id)
-            .orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
+            .orElseThrow { NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
     }
 
     fun update(customer: Customer) {
         val customerId = customer.id ?: throw Exception("Customer not found")
-        if (customerRepository.existsById(customerId)){
+        if (customerRepository.existsById(customerId)) {
             customerRepository.save(customer)
         }
     }

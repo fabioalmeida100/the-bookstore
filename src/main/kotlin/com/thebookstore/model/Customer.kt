@@ -5,7 +5,7 @@ import com.thebookstore.enums.Role
 import javax.persistence.*
 
 @Entity(name = "customer")
-data class Customer (
+data class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
@@ -29,4 +29,3 @@ data class Customer (
     @Enumerated(EnumType.STRING)
     var roles: Set<Role> = setOf()
 )
-

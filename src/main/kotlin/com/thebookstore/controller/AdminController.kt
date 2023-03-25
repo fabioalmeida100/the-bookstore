@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("admin")
 class AdminController() {
 
-        @GetMapping("sales")
-        fun sales(): String {
-            return "list sales in soon, here!"
-        }
+    @GetMapping("sales")
+    fun sales(): String {
+        return "list sales in soon, here!"
+    }
 }

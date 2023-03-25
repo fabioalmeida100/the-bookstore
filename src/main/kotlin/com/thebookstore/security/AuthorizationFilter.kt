@@ -14,7 +14,7 @@ class AuthorizationFilter(
     authenticationManager: AuthenticationManager,
     private val userDetails: UserDetailsCustomerService,
     private val jwtUtil: JwtUtil
-): BasicAuthenticationFilter(authenticationManager) {
+) : BasicAuthenticationFilter(authenticationManager) {
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         val authorizationHeader = request.getHeader("Authorization")

@@ -27,7 +27,7 @@ class BookService(val bookRepository: BookRepository) {
     fun findById(id: Int): Book {
         return bookRepository
             .findById(id)
-            .orElseThrow{ NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
+            .orElseThrow { NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
     }
 
     fun delete(id: Int) {
@@ -52,5 +52,4 @@ class BookService(val bookRepository: BookRepository) {
     fun geAllById(books: Set<Int>): List<Book> {
         return bookRepository.findAllById(books)
     }
-
 }

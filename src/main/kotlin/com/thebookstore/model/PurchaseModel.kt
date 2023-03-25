@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity(name = "purchase")
-data class PurchaseModel (
+data class PurchaseModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,

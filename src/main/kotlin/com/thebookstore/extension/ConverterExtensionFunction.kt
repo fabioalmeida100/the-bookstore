@@ -25,7 +25,8 @@ fun PutCustomerRequestDto.toCustomerModel(previousCustomer: Customer): Customer 
         name = name,
         email = email,
         status = previousCustomer.status,
-        password = previousCustomer.password)
+        password = previousCustomer.password
+    )
 }
 
 fun PostBookRequestDto.toBookModel(customer: Customer?): Book {

@@ -16,35 +16,35 @@ import javax.validation.Valid
 @RequestMapping("customers")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class CustomerController(private val customerService: CustomerService) {
-        @GetMapping
-        fun getAll(@RequestParam name: String?): List<CustomerResponse> {
-            return customerService.getAll(name).map { it.toResponse() }
-        }
+    @GetMapping
+    fun getAll(@RequestParam name: String?): List<CustomerResponse> {
+        return customerService.getAll(name).map { it.toResponse() }
+    }
 
-        @PostMapping
-        @ResponseStatus(HttpStatus.CREATED)
-        fun create(@RequestBody @Valid customerModelRequestDto: PostCustomerRequestDto) {
-            val customerModel = customerModelRequestDto.toCustomerModel();
-            customerService.create(customerModel)
-        }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun create(@RequestBody @Valid customerModelRequestDto: PostCustomerRequestDto) {
+        val customerModel = customerModelRequestDto.toCustomerModel()
+        customerService.create(customerModel)
+    }
 
-        @GetMapping("/{id}")
-        @UserCanOnlyAccessTheirOwnResource
-        fun getCustomer(@PathVariable id: Int): CustomerResponse? {
-            return customerService.getById(id)?.toResponse()
-        }
+    @GetMapping("/{id}")
+    @UserCanOnlyAccessTheirOwnResource
+    fun getCustomer(@PathVariable id: Int): CustomerResponse? {
+        return customerService.getById(id)?.toResponse()
+    }
 
-        @PutMapping("/{id}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        @UserCanOnlyAccessTheirOwnResource
-        fun update(@PathVariable id: Int, @RequestBody @Valid putCustomerModelRequestDto: PutCustomerRequestDto) {
-            val customerModelSaved = customerService.getById(id)
-            customerService.update(putCustomerModelRequestDto.toCustomerModel(customerModelSaved!!))
-        }
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @UserCanOnlyAccessTheirOwnResource
+    fun update(@PathVariable id: Int, @RequestBody @Valid putCustomerModelRequestDto: PutCustomerRequestDto) {
+        val customerModelSaved = customerService.getById(id)
+        customerService.update(putCustomerModelRequestDto.toCustomerModel(customerModelSaved!!))
+    }
 
-        @DeleteMapping("/{id}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        fun delete(@PathVariable id: Int) {
-            customerService.delete(id)
-        }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: Int) {
+        customerService.delete(id)
+    }
 }

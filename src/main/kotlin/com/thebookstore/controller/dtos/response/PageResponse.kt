@@ -7,5 +7,3 @@ class PageResponse<T> (
     val totalElements: Long,
     val totalPages: Int
 )
-
-

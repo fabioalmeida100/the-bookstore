@@ -7,8 +7,10 @@ import com.thebookstore.service.CustomerService
 import org.springframework.stereotype.Component
 
 @Component
-class PurchaseMapping(private val customerService: CustomerService,
-    private val bookService: BookService) {
+class PurchaseMapping(
+    private val customerService: CustomerService,
+    private val bookService: BookService
+) {
 
     fun toModel(request: PostPurchaseRequest): PurchaseModel {
         val customer = customerService.getById(request.customerId!!)
@@ -20,5 +22,4 @@ class PurchaseMapping(private val customerService: CustomerService,
             price = books.sumOf { it.price }
         )
     }
-
 }

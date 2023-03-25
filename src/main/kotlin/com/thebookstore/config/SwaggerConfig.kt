@@ -21,10 +21,10 @@ class SwaggerConfig {
         .apis(RequestHandlerSelectors.basePackage("com.thebookstore.controller"))
         .paths(PathSelectors.any())
         .build()
-
         .apiInfo(
             ApiInfoBuilder()
-            .title("Mercado Livro")
-            .description("Api do Mercado Livro")
-            .build())
+                .title("Mercado Livro")
+                .description("Api do Mercado Livro")
+                .build()
+        )
 }

@@ -15,7 +15,7 @@ class AuthenticationFilter(
     authenticationFilter: AuthenticationManager,
     private val customerRepository: CustomerRepository,
     private val jwtUtil: JwtUtil
-): UsernamePasswordAuthenticationFilter(authenticationFilter) {
+) : UsernamePasswordAuthenticationFilter(authenticationFilter) {
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
         try {

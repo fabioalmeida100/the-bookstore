@@ -28,7 +28,7 @@ class SecurityConfig(
     private val userDetailsCustomerService: UserDetailsCustomerService,
     private val jwtUtil: JwtUtil,
     private val customAuthenticationEntryPoint: CustomAuthenticationEntryPoint
-): WebSecurityConfigurerAdapter() {
+) : WebSecurityConfigurerAdapter() {
 
     private val PUBLIC_POST_MATCHERS = arrayOf(
         "/customers"

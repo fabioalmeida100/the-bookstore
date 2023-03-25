@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/purchases")
-class PurchaseController (
+class PurchaseController(
     private val purchaseService: PurchaseService,
     private val purchaseConverter: PurchaseMapping
 ) {
@@ -18,5 +18,4 @@ class PurchaseController (
         val purchase = purchaseConverter.toModel(request)
         purchaseService.create(purchase)
     }
-
 }
