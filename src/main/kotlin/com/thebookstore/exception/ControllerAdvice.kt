@@ -39,7 +39,8 @@ class ControllerAdvice {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleMethodArgumentNotValidException(e: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse> {
+    fun handleMethodArgumentNotValidException(e: MethodArgumentNotValidException, request: WebRequest):
+        ResponseEntity<ErrorResponse> {
         val error = ErrorResponse(
             httoCode = HttpStatus.UNPROCESSABLE_ENTITY.value(),
             message = Errors.ML001.message,

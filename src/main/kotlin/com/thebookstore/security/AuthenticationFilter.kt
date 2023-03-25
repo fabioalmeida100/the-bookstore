@@ -33,7 +33,12 @@ class AuthenticationFilter(
         }
     }
 
-    override fun successfulAuthentication(request: HttpServletRequest, response: HttpServletResponse, chain: javax.servlet.FilterChain?, authResult: Authentication) {
+    override fun successfulAuthentication(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        chain: javax.servlet.FilterChain?,
+        authResult: Authentication
+    ) {
         val id = (authResult.principal as UserCustomDetails).id
         val token = jwtUtil.generateToken(id)
 

@@ -22,9 +22,10 @@ data class Book(
     @JoinColumn(name = "customer_id")
     var customer: Customer? = null
 ) {
-    constructor(id: Int? = null, name: String, price: BigDecimal, status: BookStatus, customer: Customer? = null) : this(id, name, price, customer) {
-        this.status = status
-    }
+    constructor(id: Int? = null, name: String, price: BigDecimal, status: BookStatus, customer: Customer? = null) :
+        this(id, name, price, customer) {
+            this.status = status
+        }
 
     @Column
     @Enumerated(EnumType.STRING)
