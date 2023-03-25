@@ -89,6 +89,7 @@ class CustomerControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN"])
     fun getCustomer() {
         // Arrange
         val customer = buildCustomer()
@@ -105,6 +106,7 @@ class CustomerControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = ["ADMIN"])
     fun `should update a customer`() {
         // Arrange
         val customer = buildCustomer()
