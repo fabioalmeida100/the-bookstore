@@ -4,7 +4,7 @@ import com.thebookstore.enums.BookStatus
 import com.thebookstore.model.Customer
 import java.math.BigDecimal
 
-data class BookResponse(
+data class BookResponseDto(
     val id: Int? = null,
     val name: String,
     val price: BigDecimal,

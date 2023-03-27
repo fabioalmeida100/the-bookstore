@@ -2,8 +2,8 @@ package com.thebookstore.controller
 
 import com.thebookstore.controller.dtos.request.PostBookRequestDto
 import com.thebookstore.controller.dtos.request.PutBookRequestDto
-import com.thebookstore.controller.dtos.response.BookResponse
-import com.thebookstore.controller.dtos.response.PageResponse
+import com.thebookstore.controller.dtos.response.BookResponseDto
+import com.thebookstore.controller.dtos.response.PageResponseDto
 import com.thebookstore.extension.toBookModel
 import com.thebookstore.extension.toPageResponse
 import com.thebookstore.extension.toResponse
@@ -30,17 +30,17 @@ class BookController(
     }
 
     @GetMapping
-    fun getAll(@PageableDefault(page = 0, size = 2) pageable: Pageable): PageResponse<BookResponse> {
+    fun getAll(@PageableDefault(page = 0, size = 2) pageable: Pageable): PageResponseDto<BookResponseDto> {
         return bookService.getAll(pageable).map { it.toResponse() }.toPageResponse()
     }
 
     @GetMapping("/active")
-    fun findActives(@PageableDefault(page = 0, size = 2) pageable: Pageable): Page<BookResponse> {
+    fun findActives(@PageableDefault(page = 0, size = 2) pageable: Pageable): Page<BookResponseDto> {
         return bookService.findActives(pageable).map { it.toResponse() }
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Int): BookResponse {
+    fun getById(@PathVariable id: Int): BookResponseDto {
         return bookService.findById(id).toResponse()
     }
 

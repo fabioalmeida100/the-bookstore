@@ -1,7 +1,7 @@
 package com.thebookstore.exception
 
-import com.thebookstore.controller.dtos.response.ErrorResponse
-import com.thebookstore.controller.dtos.response.FieldErrorResponse
+import com.thebookstore.controller.dtos.response.ErrorResponseDto
+import com.thebookstore.controller.dtos.response.FieldErrorResponseDto
 import com.thebookstore.enums.Errors
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,8 +15,8 @@ import org.springframework.web.context.request.WebRequest
 class ControllerAdvice {
 
     @ExceptionHandler(NotFoundException::class)
-    fun handleNotFoundException(e: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse> {
-        val error = ErrorResponse(
+    fun handleNotFoundException(e: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponseDto> {
+        val error = ErrorResponseDto(
             httoCode = HttpStatus.NOT_FOUND.value(),
             message = e.message,
             internalCode = e.errorCode,
@@ -27,8 +27,8 @@ class ControllerAdvice {
     }
 
     @ExceptionHandler(BadRequestException::class)
-    fun handleBadRequestException(e: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponse> {
-        val error = ErrorResponse(
+    fun handleBadRequestException(e: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponseDto> {
+        val error = ErrorResponseDto(
             httoCode = HttpStatus.BAD_REQUEST.value(),
             message = e.message,
             internalCode = e.errorCode,
@@ -40,13 +40,13 @@ class ControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleMethodArgumentNotValidException(e: MethodArgumentNotValidException, request: WebRequest):
-        ResponseEntity<ErrorResponse> {
-        val error = ErrorResponse(
+        ResponseEntity<ErrorResponseDto> {
+        val error = ErrorResponseDto(
             httoCode = HttpStatus.UNPROCESSABLE_ENTITY.value(),
             message = Errors.ML001.message,
             internalCode = Errors.ML001.code,
             errors = e.bindingResult.fieldErrors.map {
-                FieldErrorResponse(it.defaultMessage ?: "Invalid", it.field)
+                FieldErrorResponseDto(it.defaultMessage ?: "Invalid", it.field)
             }
         )
 
@@ -54,8 +54,8 @@ class ControllerAdvice {
     }
 
     @ExceptionHandler(AccessDeniedException::class)
-    fun handleAccessDeniedException(e: AccessDeniedException, request: WebRequest): ResponseEntity<ErrorResponse> {
-        val error = ErrorResponse(
+    fun handleAccessDeniedException(e: AccessDeniedException, request: WebRequest): ResponseEntity<ErrorResponseDto> {
+        val error = ErrorResponseDto(
             httoCode = HttpStatus.FORBIDDEN.value(),
             message = Errors.ML000.message,
             internalCode = Errors.ML000.code,

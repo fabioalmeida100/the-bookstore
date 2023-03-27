@@ -2,7 +2,7 @@ package com.thebookstore.controller
 
 import com.thebookstore.controller.dtos.request.PostCustomerRequestDto
 import com.thebookstore.controller.dtos.request.PutCustomerRequestDto
-import com.thebookstore.controller.dtos.response.CustomerResponse
+import com.thebookstore.controller.dtos.response.CustomerResponseDto
 import com.thebookstore.extension.toCustomerModel
 import com.thebookstore.extension.toResponse
 import com.thebookstore.security.UserCanOnlyAccessTheirOwnResource
@@ -17,7 +17,7 @@ import javax.validation.Valid
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class CustomerController(private val customerService: CustomerService) {
     @GetMapping
-    fun getAll(@RequestParam name: String?): List<CustomerResponse> {
+    fun getAll(@RequestParam name: String?): List<CustomerResponseDto> {
         return customerService.getAll(name).map { it.toResponse() }
     }
 
@@ -30,7 +30,7 @@ class CustomerController(private val customerService: CustomerService) {
 
     @GetMapping("/{id}")
     @UserCanOnlyAccessTheirOwnResource
-    fun getCustomer(@PathVariable id: Int): CustomerResponse? {
+    fun getCustomer(@PathVariable id: Int): CustomerResponseDto? {
         return customerService.getById(id)?.toResponse()
     }
 

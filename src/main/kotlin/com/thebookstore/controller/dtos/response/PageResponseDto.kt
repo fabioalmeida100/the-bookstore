@@ -1,6 +1,6 @@
 package com.thebookstore.controller.dtos.response
 
-class PageResponse<T> (
+class PageResponseDto<T> (
     val items: List<T>,
     val currentPage: Int,
     val size: Int,

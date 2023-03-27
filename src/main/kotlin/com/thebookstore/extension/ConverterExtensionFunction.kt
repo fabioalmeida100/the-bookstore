@@ -4,9 +4,9 @@ import com.thebookstore.controller.dtos.request.PostBookRequestDto
 import com.thebookstore.controller.dtos.request.PostCustomerRequestDto
 import com.thebookstore.controller.dtos.request.PutBookRequestDto
 import com.thebookstore.controller.dtos.request.PutCustomerRequestDto
-import com.thebookstore.controller.dtos.response.BookResponse
-import com.thebookstore.controller.dtos.response.CustomerResponse
-import com.thebookstore.controller.dtos.response.PageResponse
+import com.thebookstore.controller.dtos.response.BookResponseDto
+import com.thebookstore.controller.dtos.response.CustomerResponseDto
+import com.thebookstore.controller.dtos.response.PageResponseDto
 import com.thebookstore.enums.BookStatus
 import com.thebookstore.enums.CustomerStatus
 import com.thebookstore.model.Book
@@ -48,8 +48,8 @@ fun PutBookRequestDto.toBookModel(previousValue: Book): Book {
     )
 }
 
-fun Customer.toResponse(): CustomerResponse {
-    return CustomerResponse(
+fun Customer.toResponse(): CustomerResponseDto {
+    return CustomerResponseDto(
         id = this.id,
         name = this.name,
         email = this.email,
@@ -57,8 +57,8 @@ fun Customer.toResponse(): CustomerResponse {
     )
 }
 
-fun Book.toResponse(): BookResponse {
-    return BookResponse(
+fun Book.toResponse(): BookResponseDto {
+    return BookResponseDto(
         id = this.id,
         name = this.name,
         price = this.price,
@@ -67,8 +67,8 @@ fun Book.toResponse(): BookResponse {
     )
 }
 
-fun <T> Page<T>.toPageResponse(): PageResponse<T> {
-    return PageResponse(
+fun <T> Page<T>.toPageResponse(): PageResponseDto<T> {
+    return PageResponseDto(
         items = this.content,
         currentPage = this.number,
         size = this.pageable.pageSize,
